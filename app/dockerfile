@@ -1,0 +1,8 @@
+FROM cgr.dev/chainguard/python:latest-dev AS base
+WORKDIR /app
+COPY . /app/
+ENV REDIS_HOST=redisC
+RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install -U flask
+
+ENTRYPOINT [ "python", "-m", "flask", "run", "--host=0.0.0.0" ]
